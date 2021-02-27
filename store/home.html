@@ -1,0 +1,946 @@
+<html lang="en">
+{% load static %}
+
+<head>
+   
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logonewnew.png'%}"/>
+
+    
+    <!--====== Title ======-->
+    <title>TroyStory</title>
+    
+
+    <!--====== Favicon Icon ======-->
+
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <!--====== Animate css ======-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+    
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+    
+    <!--====== Line Icons css ======-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/LineIcons.css' %}">
+    
+    <!--====== Default css ======-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
+    
+    <!--====== Style css ======-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
+    <!--====== Responsive css ======-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getToken(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getToken('csrftoken')
+
+        function getCookie(name) {
+            // Split cookie string and get all individual name=value pairs in an array
+            var cookieArr = document.cookie.split(";");
+
+            // Loop through the array elements
+            for(var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split("=");
+
+                /* Removing whitespace at the beginning of the cookie name
+                and compare it with the given string */
+                if(name == cookiePair[0].trim()) {
+                    // Decode the cookie value and return
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+
+            // Return null if not found
+            return null;
+        }
+        var cart = JSON.parse(getCookie('cart'))
+
+        if (cart == undefined){
+            cart = {}
+            console.log('Cart Created!', cart)
+            document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        }
+        console.log('Cart:', cart)
+    
+    </script>
+
+    <style type="text/css">
+        .hidden{
+            display: none!important;
+        }
+    </style>
+  
+  
+</head>
+
+<body>
+   
+    <!--====== PRELOADER PART START ======-->
+     <div class="preloader">
+        <div class="spin">
+            <div class="cube1"></div>
+            <div class="cube2"></div>
+        </div>
+    </div>
+   
+    
+    <!--====== PRELOADER PART START ======-->
+    
+    <!--====== HEADER PART START ======-->
+    
+    <header class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="{% url 'home' %}">
+                            <img src="{% static 'images/logonew.png' %}" alt="Logo" style = "width:15%;">
+                        </a> <!-- Logo -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="bar-icon"></span>
+                            <span class="bar-icon"></span>
+                            <span class="bar-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a data-scroll-nav="0" href="#home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-scroll-nav="0" href="{% url 'store' %}">Store</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-scroll-nav="0" href="#contact">Contact</a>
+                                </li>
+                                <li class="nav-item" id = "sign">
+                                    <a data-scroll-nav="0" href="{% url 'login' %}">Sign in/up</a>
+                                </li>
+                               <li class="nav-item hidden" id = "out">
+                                   <a data-scroll-nav="0" href="{% url 'logout' %}">Logout</a>
+                               </li>
+                                <li class="nav-item">
+                                    <a data-scroll-nav="0" href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-scroll-nav="0" href="https://twitter.com/?lang=en"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-scroll-nav="0" href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-scroll-nav="0" href="{% url 'cart' %}">Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                    <p id="cart-total">{{cartItems}}</p>
+                                </li>
+                                
+                            </ul> <!-- navbar nav -->
+                        </div>
+                    </nav> <!-- navbar -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    
+    <!--====== HEADER PART ENDS ======-->
+   
+    <!--====== SLIDER PART START ======-->
+    
+    <section id="home" class="slider-area pt-100" style = "margin-bottom: -200px;">
+        <div class="container-fluid position-relative">
+            <div class="slider-active">
+                <div class="single-slider">
+                    <div class="slider-bg">
+                        <div class="row no-gutters align-items-center ">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="slider-product-image d-none d-md-block">
+                                    <img src="{% static 'images/welcome.png' %}" alt="Slider">
+                                    <div class="slider-discount-tag">
+                                        <p>HELLO  <br> WELCOME</p>
+                                    </div>
+                                </div> <!-- slider product image -->
+                            </div>
+                            <div class="col-lg-8 col-md-7">
+                                <div class="slider-product-content">
+                                    <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s"><span>Welcome</span> to<span>TroyStory</span>!</h1>
+                                    <p class="mb-25" data-animation="fadeInUp" data-delay="0.9s">Find everything from merch, yearbooks, chromebooks, and more! <br> TroyStory has your back.</p>
+                                    <a class="main-btn" href="{% url 'store' %}" data-animation="fadeInUp" data-delay="1.5s">Explore More <i class="fa fa-chevron-right"></i></a>
+                                </div> <!-- slider product content -->
+                            </div>
+                        </div> <!-- row -->
+                    </div> <!-- container -->
+                </div> <!-- single slider -->
+                <div class="single-slider">
+                        <div class="slider-bg">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="slider-product-image d-none d-md-block">
+                                        <img src="{% static 'images/signupbanner.jpg' %}" alt="Slider">
+                                        <div class="slider-discount-tag">
+                                            <p>SIGN<br> UP</p>
+                                        </div>
+                                    </div> <!-- slider product image -->
+                                </div>
+                                <div class="col-lg-8 col-md-7">
+                                    <div class="slider-product-content">
+                                        <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s"><span>Sign up</span> now! Save your <span>favorites</span>!</h1>
+                                        <p class="mb-25" data-animation="fadeInUp" data-delay="0.9s">If you sign up with us today you will have the opportunity to save your favorites. Hurry!</p>
+                                        <a class="main-btn" href="{% url 'signup' %}" data-animation="fadeInUp" data-delay="1.5s">Explore More <i class="fa fa-chevron-right"></i></a>
+                                    </div> <!-- slider product content -->
+                                </div>
+                            </div> <!-- row -->
+                        </div> <!-- container -->
+                </div> <!-- single slider -->
+
+                <div class="single-slider">
+                        <div class="slider-bg">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="slider-product-image d-none d-md-block">
+                                        <img src="{% static 'images/yearbookad.png' %}" alt="Slider" >
+                                        <div class="slider-discount-tag">
+                                            <p>YEARBOOK<br> YEARBOOK</p>
+                                        </div>
+                                    </div> <!-- slider product image -->
+                                </div>
+                                <div class="col-lg-8 col-md-7">
+                                    <div class="slider-product-content">
+                                        <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s"><span>Purchase</span><span> yearbooks</span> now!</h1>
+                                        <p class="mb-25" data-animation="fadeInUp" data-delay="0.9s">Attention Troy High School! Yearbooks are now on sale!<br> Buy one today! The deadline is May 2nd 2021.</p>
+                                        <a class="main-btn" href="{% url 'yearbooks' %}" data-animation="fadeInUp" data-delay="1.5s">Explore More <i class="fa fa-chevron-right"></i></a>
+                                    </div> <!-- slider product content -->
+                                </div>
+                            </div> <!-- row -->
+                        </div> <!-- container -->
+                </div> <!-- single slider -->
+
+                <div class="single-slider">
+                        <div class="slider-bg">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="slider-product-image d-none d-md-block">
+                                        <img src="{% static 'images/phone.jpg' %}" alt="Slider">
+                                        <div class="slider-discount-tag">
+                                            <p>CONTACT<br> US</p>
+                                        </div>
+                                    </div> <!-- slider product image -->
+                                </div>
+                                <div class="col-lg-8 col-md-7">
+                                    <div class="slider-product-content">
+                                        <h1 class="slider-title mb-10" data-animation="fadeInUp" data-delay="0.3s">Have <span> more</span> <span>questions</span>?</h1>
+                                        <p class="mb-25" data-animation="fadeInUp" data-delay="0.9s">Click the button below to <br> learn more information.</p>
+                                        <a class="main-btn" href="#contact" data-animation="fadeInUp" data-delay="1.5s">Contact Us <i class="fa fa-chevron-right"></i></a>
+                                    </div> <!-- slider product content -->
+                                </div>
+                            </div> <!-- row -->
+                        </div> <!-- container -->
+                </div> <!-- single slider -->
+            </div> <!-- slider active -->
+            <!--<div class="slider-social">-->
+        </div> <!-- container fluid -->
+    </section>
+    
+    
+    
+    <section id="product" class="product-area pt-100 pb-130">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="collection-menu text-center mt-30">
+                        <h4 class="collection-tilte">Preview </h4>
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="active" id="v-pills-furniture-tab" data-toggle="pill" href="#v-pills-furniture" role="tab" aria-controls="v-pills-furniture" aria-selected="true">Shirts</a>
+                            
+                            <a id="v-pills-decorative-tab" data-toggle="pill" href="#v-pills-decorative" role="tab" aria-controls="v-pills-decorative" aria-selected="false">Troy Spirit</a>
+                            
+                            
+                            
+                           
+                        </div> <!-- nav -->
+                    </div> <!-- collection menu -->
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-furniture" role="tabpanel" aria-labelledby="v-pills-furniture-tab">
+                            <div class="product-items mt-30">
+                                <div class="row product-items-active">
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <img src="{% static 'images/LEOFront.png' %}" alt="Product">
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title">Troy LEO Club Shirt</h5>
+                                                <span class="regular-price">$10.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <img src="{% static 'images/girlUpFront.png' %}" alt="Product">
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title">Troy Girl Up Club Shirt</h5>
+                                                <span class="regular-price">$10.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <img src="{% static 'images/makeAWishFront.png' %}" alt="Product">
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title">Troy Make a Wish Shirt</h5>
+                                                <span class="regular-price">$10.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <img src="{% static 'images/FBLAFront.png' %}" alt="Product">
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title">Troy FBLA Shirt</h5>
+                                
+                                                <span class="regular-price">$10.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                </div> <!-- row -->
+                            </div> <!-- product items -->
+                        </div> <!-- tab pane -->
+
+                        <div class="tab-pane fade" id="v-pills-decorative" role="tabpanel" aria-labelledby="v-pills-decorative-tab">
+                            <div class="product-items mt-30">
+                                <div class="row product-items-active">
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <img src="{% static 'images/troyHoodieFront.png' %}" alt="Product">
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title">Troy Hoodie</h5>
+                                                <span class="regular-price">$20.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <img src="{% static 'images/troyFront.png' %}" alt="Product">
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title">Troy Signature Shirt</h5>
+                                                
+                                                <span class="regular-price">$10.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <img src="{% static 'images/troyMusicFront.png' %}" alt="Product">
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title">Troy Music Shirt</h5>
+                                                <span class="regular-price">$10.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <img src="{% static 'images/troyTechFront.png' %}" alt="Product">
+                            
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title">Troy Tech Sweatshirt</h5>
+                                                <span class="regular-price">$20.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                </div> <!-- row -->
+                            </div> <!-- product items -->
+                        </div> <!-- tab pane -->
+
+                        <div class="tab-pane fade" id="v-pills-lighting" role="tabpanel" aria-labelledby="v-pills-lighting-tab">
+                            <div class="product-items mt-30">
+                                <div class="row product-items-active">
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="{% static 'images/sadies.PNG' %}" alt="Product"></a>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Sadies Tickets</a></h5>
+                                                <span class="regular-price">$25.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="{% static 'images/prom.PNG' %}" alt="Product"></a>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Prom Tickets</a></h5>
+                                                
+                                                <span class="regular-price">$25.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="{% static 'images/morp_uD4O2BC.PNG' %}" alt="Product"></a>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Morp Tickets</a></h5>
+                                                <span class="regular-price">$25.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="{% static 'images/homecoming.PNG' %}" alt="Product"></a>
+                                                
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Homecoming Tickets</a></h5>
+                                                <span class="regular-price">$25.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                </div> <!-- row -->
+                            </div> <!-- product items -->
+                        </div> <!-- tab pane -->
+
+                        <div class="tab-pane fade" id="v-pills-outdoor" role="tabpanel" aria-labelledby="v-pills-outdoor-tab">
+                            <div class="product-items mt-30">
+                                <div class="row product-items-active">
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-3.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                </div> <!-- row -->
+                            </div> <!-- product items -->
+                        </div> <!-- tab pane -->
+
+                        <div class="tab-pane fade" id="v-pills-storage" role="tabpanel" aria-labelledby="v-pills-storage-tab">
+                            <div class="product-items mt-30">
+                                <div class="row product-items-active">
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-3.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-1.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="single-product-items">
+                                            <div class="product-item-image">
+                                                <a href="#"><img src="assets/images/product/p-2.jpg" alt="Product"></a>
+                                                <div class="product-discount-tag">
+                                                    <p>-60%</p>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-content text-center mt-30">
+                                                <h5 class="product-title"><a href="#">Touchwood Chair</a></h5>
+                                                <ul class="rating">
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                    <li><i class="lni-star-filled"></i></li>
+                                                </ul>
+                                                <span class="regular-price">$59.00</span>
+                                                <span class="discount-price">$69.00</span>
+                                            </div>
+                                        </div> <!-- single product items -->
+                                    </div>
+                                </div> <!-- row -->
+                            </div> <!-- product items -->
+                        </div> <!-- tab pane -->
+                    </div> <!-- tab content --> 
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+    
+    <!--====== PRODUCT PART ENDS ======-->
+
+  
+    
+    <!--====== SERVICES PART ENDS ======-->
+
+    <!--====== SHOWCASE PART START ======-->
+    
+    <section id="showcase" class="showcase-area pt-100 pb-130">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="showcase-title pt-25">
+                        <h2 class="title">Showcase</h2>
+                    </div> <!-- showcase title -->
+                </div> 
+                <div class="col-lg-6">
+                    <div class="showcase-title pt-25">
+                        <p>Get a quick preview of our most purchased item! Yearbooks are on sale now for $50. Due to the unprecedented number of sales, there will be cap on purchases so make sure to buy yours now. Navigate to the store to add to your cart. Get ready to experience the Troy Story.</p>
+                    </div> <!-- showcase title -->
+                </div>
+            </div> <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="showcase-active mt-65">
+                        <div class="single-showcase">
+                            <img src="{% static 'images/orangeyearbookreal.jpg' %}" alt="Testimonial">
+                        </div> <!-- single showcase -->
+                        <div class="single-showcase">
+                            <img src="{% static 'images/realyearbook.jpg' %}" alt="Testimonial">
+                        </div> <!-- single showcase -->
+                    </div> <!-- showcase active -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+    
+    <!--====== SHOWCASE PART ENDS ======-->
+
+    <!--====== TEAM PART START ======-->
+    
+    
+
+    <!--====== CONTACT PART START ======-->
+    
+    <section id="contact" class="contact-area pt-115">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="contact-title text-center">
+                        <h2 class="title">Get In Touch</h2>
+                    </div> <!-- contact title -->
+                </div>
+            </div> <!-- row -->
+            <div class="contact-box mt-70">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="contact-info pt-25">
+                            <h4 class="info-title">Contact Info</h4>
+                            <ul>
+                                <li>
+                                    <div class="single-info mt-30">
+                                        <div class="info-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <p>+909 000 0000</p>
+                                            <p>Please note this is fake.</p>
+                                        </div>
+                                    </div> <!-- single info -->
+                                </li>
+                                <li>
+                                    <div class="single-info mt-30">
+                                        <div class="info-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <p>troystory2021@gmail.com</p>
+                                        </div>
+                                    </div> <!-- single info -->
+                                </li>
+                                <li>
+                                    <div class="single-info mt-30">
+                                        <div class="info-icon">
+                                            <i class="fa fa-home"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <p>2200 Dorothy Ln, Fullerton, CA 92831</p>
+                                        </div>
+                                    </div> <!-- single info -->
+                                </li>
+                            </ul>
+                        </div> <!-- contact info -->
+                    </div> 
+                    <div class="col-lg-8">
+                        <div class="contact-form">
+                            <!--action="assets/contact.php"-->
+                            <form id="contact-form" action="mailto:mishty.dhekial@gmail.com" method="post" data-toggle="validator">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="single-form form-group">
+                                            <input type="text" name="name" placeholder="Enter Your Name" data-error="Name is required." required="required">
+                                            <div class="help-block with-errors"></div>
+                                        </div> <!-- single form -->
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="single-form form-group">
+                                            <input type="email" name="email" placeholder="Enter Your Email"  data-error="Valid email is required." required="required">
+                                            <div class="help-block with-errors"></div>
+                                        </div> <!-- single form -->
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single-form form-group">
+                                            <textarea name="message" placeholder="Enter Your Message" data-error="Please,leave us a message." required="required"></textarea>
+                                            <div class="help-block with-errors"></div>
+                                        </div> <!-- single form -->
+                                    </div>
+                                    <p class="form-message"></p>
+                                    <div class="col-lg-12">
+                                        <div class="single-form form-group">
+                                            <button class="main-btn" type="submit">CONTACT NOW</button>
+                                        </div> <!-- single form -->
+                                    </div>
+                                    <!--<img src = "{% static 'images/contactbottom.jpg' %}">-->
+                                </div> <!-- row -->
+                            </form>
+                        </div> <!-- row -->
+                    </div> 
+                </div> <!-- row -->
+            </div> <!-- contact box -->
+        </div> <!-- container -->
+    </section>
+    
+    <!--====== CONTACT PART ENDS ======-->
+
+    <!--====== FOOTER PART START ======-->
+    
+    <section id="footer" class="footer-area">
+        <div class="container">
+            <div class="footer-widget pt-75 pb-120">
+                <div class="row">
+                    <div class="col-lg-3 col-md-5 col-sm-7">
+                        <div class="footer-logo mt-40">
+                            <a>
+                                <img src="{% static 'images/logonew.png' %}" alt="Logo" style="width:70%;">
+                            </a>
+                            <p class="mt-10">Logo created with canva. Click <a href = "https://www.canva.com/">here</a> to learn more.</p>
+                
+                        </div> <!-- footer logo -->
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5">
+                        <div class="footer-link mt-50">
+                            <h5 class="f-title">Products</h5>
+                            <ul>
+                                <li><a href="{% url 'clubshirts' %}">Club Shirts</a></li>
+                                <li><a href="{% url 'troy' %}">Troy Themed</a></li>
+                                <li><a href="{% url 'technology' %}">Technology</a></li>
+                                <li><a href="{% url 'dances' %}">Dance Tickets</a></li>
+                                <li><a href="{% url 'yearbooks' %}">Yearbooks</a></li>
+                            </ul>
+                        </div> <!-- footer link -->
+                    </div>
+                   
+                    <div class="col-lg-4 col-md-5 col-sm-7">
+                        <div class="footer-info mt-50">
+                            <h5 class="f-title">Contact Info</h5>
+                            <ul>
+                                <li>
+                                    <div class="single-footer-info mt-20">
+                                        <span>Phone :</span>
+                                        <div class="footer-info-content">
+                                            <p>+909 000 0000</p>
+                                            <p>Please note this is fake.</p>
+                                        </div>
+                                    </div> <!-- single footer info -->
+                                </li>
+                                <li>
+                                    <div class="single-footer-info mt-20">
+                                        <span>Email :</span>
+                                        <div class="footer-info-content">
+                                            <p>troystory2021@gmail.com</p>
+
+                                        </div>
+                                    </div> <!-- single footer info -->
+                                </li>
+                                <li>
+                                    <div class="single-footer-info mt-20">
+                                        <span>Address :</span>
+                                        <div class="footer-info-content">
+                                            <p>2200 Dorothy Ln, Fullerton, CA 92831</p>
+                                        </div>
+                                    </div> <!-- single footer info -->
+                                </li>
+                            </ul>
+                        </div> <!-- footer link -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- footer widget -->
+            <div class="footer-copyright pt-15 pb-15">
+                <footer
+                        style = "
+                            text-align: center; margin-top: 10px;
+
+
+                        "
+                >
+                        <a href = "{% url 'resourcesused' %}" style = "margin-right: 20px">Resources Used (Copyright)</a>
+                        
+                        <a href = "{% url 'description' %}" style = "margin-right: 20px">Description of technology used</a>
+                        <a> &#169;TroyStory 2021</a>
+                </footer>
+            </div> <!--  footer copyright -->
+        </div> <!-- container -->
+    </section>
+    
+    <!--====== FOOTER PART ENDS ======-->
+    
+    <!--====== BACK TO TOP PART START ======-->
+    
+    <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    
+    <!--====== BACK TO TOP PART ENDS ======-->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--====== jquery js ======-->
+    <script src="{% static 'js/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+    
+    <!--====== Slick js ======-->
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    
+    <!--====== Magnific Popup js ======-->
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+
+    
+    <!--====== nav js ======-->
+    <script src="{% static 'js/jquery.nav.js' %}"></script>
+    
+    <!--====== Nice Number js ======-->
+    <script src="{% static 'js/jquery.nice-number.min.js' %}"></script>
+    
+    <!--====== Main js ======-->
+    <script src="{% static 'js/main.js' %}"></script>
+        <script type="text/javascript">
+            if (user != 'AnonymousUser'){
+                document.getElementById('sign').classList.add("hidden");
+                document.getElementById('hello').classList.remove("hidden");
+                document.getElementById('out').classList.remove("hidden");
+                document.getElementById('liked').classList.remove("hidden");
+            }
+        </script>
+</body>
+
+</html>
