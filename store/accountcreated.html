@@ -1,0 +1,15 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<head>
+	<style type="text/css">
+		h2 {
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h2> Account Created! </h2>
+	<a href = "{% url 'login' %}"> Login </button>
+</body>
+{% endblock %}

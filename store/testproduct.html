@@ -1,0 +1,429 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutorial</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
+    <!-- CSS -->
+    <link href="style.css" rel="stylesheet">
+    <meta name="robots" content="noindex,follow" />
+    <style type="text/css">
+      /* Basic Styling */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.containerhere {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+
+/* Columns */
+.left-column {
+  margin-right: 20px;
+  width: 65%;
+  position: relative;
+}
+
+.right-column {
+  width: 35%;
+  margin-top: 60px;
+}
+
+
+/* Left Column */
+.left-column img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.3s ease;
+}
+
+.left-column img.active {
+  opacity: 1;
+}
+
+
+/* Right Column */
+
+/* Product Description */
+.product-description {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+.product-description span {
+  font-size: 12px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.product-description h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #43484D;
+  letter-spacing: -2px;
+}
+.product-description p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #86939E;
+  line-height: 24px;
+}
+
+/* Product Configuration */
+.product-color span,
+.cable-config span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #86939E;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+/* Product Color */
+.product-color {
+  margin-bottom: 30px;
+}
+
+.color-choose div {
+  display: inline-block;
+}
+
+.color-choose input[type="radio"] {
+  display: none;
+}
+
+.color-choose input[type="radio"] + label span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.color-choose input[type="radio"] + label span {
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
+}
+
+.color-choose input[type="radio"]#red + label span {
+  background-color: #C91524;
+}
+.color-choose input[type="radio"]#blue + label span {
+  background-color: #314780;
+}
+.color-choose input[type="radio"]#black + label span {
+  background-color: #323232;
+}
+
+.color-choose input[type="radio"]:checked + label span {
+  background-image: url(images/check-icn.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Cable Configuration */
+.cable-choose {
+  margin-bottom: 20px;
+}
+
+.cable-choose button {
+  border: 2px solid #E1E8EE;
+  border-radius: 6px;
+  padding: 13px 20px;
+  font-size: 14px;
+  color: #5E6977;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.cable-choose button:hover,
+.cable-choose button:active,
+.cable-choose button:focus {
+  border: 2px solid #86939E;
+  outline: none;
+}
+
+.cable-config {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+
+.cable-config a {
+  color: #358ED7;
+  text-decoration: none;
+  font-size: 12px;
+  position: relative;
+  margin: 10px 0;
+  display: inline-block;
+}
+.cable-config a:before {
+  content: "?";
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(53, 142, 215, 0.5);
+  display: inline-block;
+  text-align: center;
+  line-height: 16px;
+  opacity: 0.5;
+  margin-right: 5px;
+}
+
+/* Product Price */
+.product-price {
+  display: flex;
+  align-items: center;
+}
+
+.product-price span {
+  font-size: 26px;
+  font-weight: 300;
+  color: #43474D;
+  margin-right: 20px;
+}
+
+.cart-btn {
+  
+  background-color: #7DC855;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+}
+.cart-btn:hover {
+  background-color: #64af3d;
+}
+
+/* Responsive */
+@media (max-width: 940px) {
+  .containerhere {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  .left-column img {
+    width: 300px;
+    right: 0;
+    top: -65px;
+    left: initial;
+  }
+}
+
+@media (max-width: 535px) {
+  .left-column img {
+    width: 220px;
+    top: -85px;
+  }
+}
+
+.comments {
+  margin-top: 10px;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+    </style>
+  </head>
+
+  <body>
+  
+    
+
+<div class="row" style="background:white;padding:30px;">
+    <div class="col-lg-6" style="text-align:center;">
+          {% if product.image2URL == '' %}
+            <img src="{{product.imageURL}}" alt="" style="width:60%;">
+          {% else %}
+        <div class="slideshow-container">
+          <div class = " mySlides" onclick="remove1()"> <img src="{{product.imageURL}}" alt="" style="width:60%;"></div>
+          <div class = " mySlides"><img src="{{product.image2URL}}" alt="" style="width:60%;"></div>
+
+          
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        {% endif %}
+    </div>
+    <div class="col-lg-6">
+          <h1>{{product.name}}</h1>
+          <h5>{{product.productType}}</h5>
+          <p>{{product.description}}</p>
+          <div class ="cable-choose">
+            <h6>Size</h6>
+            {% if product.productType == "Shirt" %}
+              <p>One size fits all</p>
+            {% endif %}
+            {% if product.productType == "Troy" %}
+              <p>One size fits all</p>
+            {% endif %}
+            {% if product.digital == True %}
+              <p>No Size</p>
+            {% endif %}
+            </div>
+              <div class="product-price">
+          <span>${{product.price}}</span>
+          <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary update-cart" style="margin: 5px;">Add to Cart</button>
+          <br/>
+          {% if user.is_authenticated %}
+            <form action="{% url 'product_like' product.id %}" method="POST">
+              {% csrf_token %}
+              {% if post_is_liked %}
+              <button type="submit" name="product_id" value="{{product.id}}" class="btn btn-outline-secondary">Unlike</button>
+              {% else %}
+              <button type="submit" name="product_id" value="{{product.id}}" class="btn btn-outline-secondary" style="margin-right: 5px;">Like<i class = "fa fa-heart" style="margin-left: 3px;"></i></button>
+              {% endif %}
+            </form>
+          {% else %}
+            <a class="btn btn-outline-secondary" href="{% url 'login' %}?next={{request.path}}" style="margin-right: 5px;">Log in to like!</a><br>
+          {% endif %}
+          <strong class="text-secondary">{{ product.number_of_likes }} Like{{ product.number_of_likes|pluralize }}</strong>
+
+        </div>
+    </div>
+</div>
+<div class ="row" style="margin-top: 10px;">
+<div class = "comments col-lg-6" style="background:#ffcba8;">
+  <div style = "padding: 30px;">
+      <h3>Comments</h3>
+      <button onclick="showForm()" class ="btn btn-outline-secondary " style="margin-bottom: 10px;">Add Comment</button>
+      <button onclick="hideForm()" class ="btn btn-outline-secondary hidden" style="margin-bottom: 10px;" id ="close">X</button>
+      <form method = "POST" class="hidden" id = "commentForm">
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type ="submit" name="Submit" class="btn btn-outline-secondary" style="margin-bottom: 10px;"></input>
+    </form>
+      {% if not product.comments.all %}
+        <p> No comments yet... </p>
+        <img src="{% static 'images/nocomments.svg' %}" style = "
+            width: 65%;
+        ">
+      {% else %}
+        {% for comment in product.comments.all %}
+          <p>{{comment.date_added}}</p>
+          <p>{{comment.comment_text}} - {{comment.name}}</p>
+          <i class="fa fa-star" aria-hidden="true" style="margin-right: 5px;"></i>{{comment.stars}}
+          
+          <hr />
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  <div class = "pickupAndDelivery col-lg-6" style="background:white;">
+    <div style = "padding: 30px;">
+    <h3>Delivery Information</h3>
+    {% if product.digital == False %}
+    <p> TroyStory proudly delivers to students and their families in the Southern California region free of cost. Shipping is approximately 7 to 14 days. If there is an issue with delivery please contact us <a href = "{% url 'home' %}#contact">here</a>. </p>
+    <img src="{% static 'images/delivery.svg' %}" style = "
+        width: 75%;
+    ">
+    {% else %}
+    {% if product.productType == "Dance Tickets" %}
+        <p>This item is digital and therefore will not be shipped to you. Don't worry, your order is stored in our database. When you attend this dance, let the office know you bought your ticket online and they will let you in.</p>
+        <img src="{% static 'images/digital.svg' %}" style = "
+            width: 75%;
+        ">
+    {% endif %}
+    {% if product.name == "Chromebook Insurance" %}
+        <p>This item is digital and therefore will not be shipped to you. Don't worry, your order is stored in our database. In the chance that you damage your chromebook, let the office know you have chromebook insurance and we'll check our database to ensure truthfulness.</p>
+        <img src="{% static 'images/digital.svg' %}" style = "
+            width: 75%;
+        ">
+    {% endif %}
+    {% endif %}
+
+
+
+   
+  </div>
+</div>
+</div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <script src="script.js" charset="utf-8"></script>
+    <script>
+      function showForm() {
+        document.getElementById('commentForm').classList.remove("hidden");
+        document.getElementById('close').classList.remove("hidden");
+      }
+      function hideForm() {
+        document.getElementById('commentForm').classList.toggle("hidden");
+        document.getElementById('close').classList.toggle("hidden");
+      }
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      // Next/previous controls
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      // Thumbnail image controls
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+      }
+
+
+    </script>
+  </body>
+{% endblock %}

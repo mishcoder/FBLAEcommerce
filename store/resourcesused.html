@@ -1,0 +1,70 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+		
+		<div>
+			<h3>Sources Used</h3>
+			<ul>
+				<li><a href = "https://onepagelove.com/furnish">Landing template - UIdeck</a></li>
+				<li><a href = "https://www.youtube.com/watch?v=ZI41tLLxNak">Store tutorial - GeekProbin</a></li>
+				<li><a href = "https://www.youtube.com/playlist?list=PL-51WBLyFTg0omnamUjL1TCVov7yDTRng">Django ecommerce tutorial - Dennis Ivy</a></li>
+				<li><a href = "https://www.youtube.com/watch?v=t-EMinSz_Tk&t=188s">Login / Sign In tutorial - True Coder</a></li>
+				<li><a href = "https://www.canva.com/">Logo - Canva</a></li>
+				<li><a href = "https://mockup.printaura.com/">Shirt designs and mockups - printaura</a></li>
+				<li><a href = "https://developer.paypal.com/demo/checkout/#/pattern/client">Checkout - PayPal API</a></li>
+			</ul>
+			<h3>Image Credits</h3>
+			<ul>
+				<li><a href="https://www.picmonkey.com/blog/how-to-design-a-senior-yearbook-ad">Yearbook landing page - pickmonkey</a></li>
+				<img src="{% static 'images/yearbookad.png'%}" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.pinterest.com.au/pin/342484746656660828/">Welcome landing page - m.alibaba.com</a></li>
+				<img src="{% static 'images/welcome.png'%}" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.pinterest.com/pin/674625219170837684/">Orange phone landing page - essentialhome.eu</a></li>
+				<img src="{% static 'images/phone.jpg'%}" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.istockphoto.com/photo/excited-couple-talking-holding-smartphones-standing-over-yellow-background-gm1178904864-329685885">Two people talking landing page - gettyImages iStock </a></li>
+				<img src="{% static 'images/signupbanner.jpg'%}" style="height: 10%; width: 10%;">
+
+				<li><a href="https://br.depositphotos.com/278345210/stock-illustration-white-handbag-icon-isolated-on.html">Login profile picture bag - depositphotos </a></li>
+				<img src="https://i.pinimg.com/474x/ec/a9/67/eca967b0e91fb893a13e9c1442fc5cf5.jpg" style="height: 10%; width: 10%;">
+
+				<li><a href="https://undraw.co/">Login / signup / no comments / delivery physical / no delivery digital - undraw.co</a></li>
+				<img src="{% static 'images/signin.svg'%}" style="height: 10%; width: 10%;">
+				<img src="{% static 'images/signup.svg'%}" style="height: 10%; width: 10%;">
+				<img src="{% static 'images/nocomments.svg'%}" style="height: 10%; width: 10%;">
+				<img src="{% static 'images/delivery.svg'%}" style="height: 10%; width: 10%;">
+				<img src="{% static 'images/digital.svg'%}" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.clipartkey.com/view/ixwTxh_troy-high-school-troy-high-school-fullerton-logo/">Troy High School Logo - Tara Kekahuna</a></li>
+				<img src="https://www.clipartkey.com/mpngs/m/26-265278_troy-high-school-troy-high-school-fullerton-logo.png" style="height: 10%; width: 10%;">
+
+				<li><a href="https://star.wish.org/pages/our-logo">Make A Wish Logo - Make a Wish Foundation</a></li>
+				<img src="https://cdn.shopify.com/s/files/1/1095/6418/files/New_make_a_wish_logo.png?v=1516547189" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.pngitem.com/middle/iJwhJw_girl-up-logo-hd-png-download/ ">Girl up Logo - girlUp Foundation</a></li>
+				<img src="https://pbs.twimg.com/profile_images/1049413651009101824/7No8V1fr_400x400.jpg" style="height: 10%; width: 10%;">
+
+				<li><a href="https://sites.google.com/a/fjuhsd.org/troy-high-school-warrior-band/">Troy Music Logo - Troy Warrior Band</a></li>
+				<img src="https://static.hudl.com/users/prod/5149510_3b8ef255e92948f0bb48a7d47448eac6.jpg" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.fjuhsd.org/Page/681">Troy Tech Logo - Troy High School </a></li>
+				<img src="https://www.fjuhsd.org/cms/lib/CA02000098/Centricity/Domain/235/Troy-Tech_FINAL_Oct2016.png" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.choc.org/">Choc Logo - CHOC Foundation</a></li>
+				<img src="data:image/png;base64,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" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.fbla-pbl.org/fbla/membership-benefits/discounts-added-benefits/">FBLA Member Logo - FBLA Foundation </a></li>
+				<img src="https://www.thomas.k12.ga.us/docs/_full_/building/1/19.20%20pics%20and%20forms/fbla.png?id=171713&thumbwidth=190&fullwidth=500" style="height: 10%; width: 10%;">
+
+				<li><a href="https://flboe.com/cms/One.aspx?portalId=182769&pageId=33313965">Chromebook Insurance - flboe </a></li>
+				<img src="https://p13cdn4static.sharpschool.com/UserFiles/Servers/Server_182685/Image/211-2116734_chromebook-insurance-title-with-a-laptop-icon-circle.png" style="height: 10%; width: 10%;">
+
+				<li><a href="https://www.etsy.com/market/kawaii_laptop_case">Chromebook Cover - Etsy</a></li>
+				<img src="https://i.etsystatic.com/23136024/d/il/2df197/2721546347/il_340x270.2721546347_m2i6.jpg?version=0" style="height: 10%; width: 10%;">
+
+			</ul>
+		</div>
+
+{% endblock content %}
