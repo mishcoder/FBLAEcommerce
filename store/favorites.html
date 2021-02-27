@@ -1,0 +1,44 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/store.css' %}">
+</head>
+	<div class = "products">
+	    <div class = "container">
+	        <h1 class = "lg-title">Favorites</h1>
+	       	{% if not favorites.all %}
+	       		 No products liked yet... 
+	       	{% else %}
+
+	        <div class = "product-items">
+	            <!-- single product -->
+	            {% for favorite in favorites %}
+		            <div class = "product">
+		            	<div class = "product-content">
+		            		<div class = "product-img">
+		            		    <img src = "{{favorite.imageURL}}" alt = "product image">
+		            		</div>
+		            		<div class = "product-btns">
+		            			
+		            			<button type = "button" class = "btn-cart update-cart" data-product="{{favorite.id}}" data-action="add" > Add  <span><i class = "fa fa-shopping-cart"></i></span></button>
+		            			<a type = "button" class = "btn-buy" href = "{% url 'productdetail' favorite.id %}" style="text-align: center;text-decoration: none;"> View
+		            			</a>
+		            		</div>
+		            	</div>
+		            	<div class = "product-info">
+		            	    <div class = "product-info-top">
+		            	        <h2 class = "sm-title">{{favorite.productType}}</h2>
+
+		            	    </div>
+		            	    <a href = "{% url 'productdetail' favorite.id %}" class = "product-name">{{favorite.name}}</a>
+		            	    <p class = "product-price">$ {{favorite.price}}</p>
+		            	 
+		            	</div>
+		            </div>
+		            
+		        {% endfor %}
+		    </div>
+		    {% endif %}
+{% endblock content %}
+

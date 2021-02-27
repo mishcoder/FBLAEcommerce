@@ -1,0 +1,23 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+	<div>
+		<h3> Description of technology used </h3>
+		<ul>
+			
+			<li><strong>HTML</strong> - HTML was used to help format and provide content for the website.</li>
+			<li><strong>CSS</strong> - CSS was used to style this website.</li>
+			<li><strong>Javascript</strong> - Javascript was used to add animations to the website and ensure cookies which lets the website store user data. For example, when a user adds an item to the cart, the item will still be saved to the user’s session even after they have logged out or refreshed.</li>
+			<li><strong>Python Django Framework</strong> - The Python Django Framework was used to create a database to store users, products, orders, favorite items, etc. for the website. It allows for users to create accounts, log in, add items to cart, and successfully checkout.</li>
+		</ul>
+		<h3> Features of Site </h3>
+		<ul>
+			<li>Cookies to save cart items even after logging out or refreshing</li>
+			<li>Ability to comment and give reviews on items</li>
+			<li>Ability to like items and save to favorites (only possible when logged in)</li>
+			<li>Checkout with PayPal API integration</li>
+			<li>Items stored to database</li>
+		</ul>
+	</div>	
+{% endblock content %}
+
